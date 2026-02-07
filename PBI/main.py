@@ -10,11 +10,12 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def load_countries(filename="countries.csv",base_dir=BASE_DIR):
     csv_path=os.path.join(base_dir,filename)
+    print(f"[INFO] Cargando datos desde: {csv_path}")
     if not os.path.exists(csv_path):
         raise FileNotFoundError(f"No se encontrol el archivo: {csv_path}")
     return pd.read_csv(csv_path)
 
-def prepare_data(df,target_col="GDP",drop_col="Region"):
+def prepare_data(df,target_col="GDP ($ per capita)",drop_col="Region"):
     
     # 1.- eliminar la columa region
     if drop_col in df.columns:
