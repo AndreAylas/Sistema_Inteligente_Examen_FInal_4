@@ -108,29 +108,28 @@ def main():
 
     X, y = prepare_data(df, target_col="GDP ($ per capita)", drop_col="Region")
 
-    print(f"[INFO] Filas finales (sin NaN): {len(y)}")
-    print(f"[INFO] Nº de features numéricas usadas: {X.shape[1]}")
-
     X_scaled = standarize_features(X)
 
     mse1, mse2, folds1, folds2 = evaluate_models(
         X_scaled, y, k=5, random_state=42, alpha=0.1, max_iter=30000
     )
 
-    print("\n[RESULT] MLP1 (1 capa oculta de 200 neuronas)")
-    print(f"  MSE medio (k=5): {mse1:.4f}")
+    print("RESULTADOS DE LA EVALUACIÓN DE MODELOS:")
+    print("============MLP1============")
+    print(f"  MSE medio: {mse1:.4f}")
     print(f"  MSE por fold: {folds1}")
 
-    print("\n[RESULT] MLP2 (2 capas ocultas de 50 y 50 neuronas)")
+    print("============MLP2============)")
     print(f"  MSE medio (k=5): {mse2:.4f}")
     print(f"  MSE por fold: {folds2}")
 
+    print("CONCLUSIÓN:")
     if mse1 < mse2:
-        print("\n[CONCLUSION] MLP1 domina (menor MSE medio).")
+        print("MLP1 domina al tener menor MSE medio.")
     elif mse2 < mse1:
-        print("\n[CONCLUSION] MLP2 domina (menor MSE medio).")
+        print("MLP2 domina al tener menor MSE medio.")
     else:
-        print("\n[CONCLUSION] Empate (mismo MSE medio).")
+        print("Empate al tener el mismo MSE medio.")
 
 
 if __name__ == "__main__":
