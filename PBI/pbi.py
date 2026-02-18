@@ -10,12 +10,12 @@ from sklearn.neural_network import MLPRegressor
 BASE_DIR=None
 
 
-def load_path(filename="countries.csv", base_dir=BASE_DIR):
+def load_path(filename="countries.csv", base_dir=BASE_DIR):#cargar el archivo csv desde la ruta relativa al script
     base_dir=os.path.dirname(os.path.abspath(__file__))
     csv_path = os.path.join(base_dir, filename)
     return csv_path
 
-def load_countries(csv_path):
+def load_countries(csv_path):#cargar los paises desde el archivo csv y normalizar los nombres de las columnas
     if not os.path.exists(csv_path):
         raise FileNotFoundError(f"No se encontró el archivo: {csv_path}")
     df=pd.read_csv(csv_path)
